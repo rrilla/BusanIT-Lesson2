@@ -5,9 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>파일 업로드 예시1</title>
 </head>
 <body>
-	<form method="post" action="upLoadPro"></form>
+	<form method="post" action="upLoadPro" enctype="multipart/form-data">
+		<input type="file" name="filename" multiple/><br> <!-- 'multiple'다중파일 선택가능 -->
+		<input type="file" name="filename1" />			<!-- 하나씩 보내기 -->
+		<input type="file" name="filename2" />
+		<input type="file" name="filename3" />
+	</form>
 </body>
 </html>
