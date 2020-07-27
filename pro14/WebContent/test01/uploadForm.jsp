@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>파일 업로드 예시1</title>
+<title>파일 업로드 예시1(cos)</title>
 </head>
 <body>
 	<form method="post" action="upLoadPro" enctype="multipart/form-data">

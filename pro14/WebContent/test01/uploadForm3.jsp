@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>파일 업로드 예시3(다중파일)</title>
+<title>파일 업로드 예시3(다중파일,cos)</title>
 </head>
 <body>
 	<form method="post" action="../upload2.do" enctype="multipart/form-data">
