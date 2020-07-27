@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>파일 업로드 예시2</title>
+<title>파일 업로드 예시2(단일파일)</title>
 </head>
 <body>
-	<form method="post" action="upload.do" enctype="multipart/form-data">
+	<form method="post" action="../upload.do" enctype="multipart/form-data">
 		글쓴이 : <input type="text" name="name" /><br> 
 		제 &nbsp; 목 : <input type="text" name="title" /><br>
 		파 &nbsp; 일 : <input type="file" name="uploadFile" /><br><br>

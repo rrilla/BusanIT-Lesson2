@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -13,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-@WebServlet("/upload.do")
-public class UploadServlet extends HttpServlet {
+@WebServlet("/upload2.do")
+public class UploadServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,14 +38,16 @@ public class UploadServlet extends HttpServlet {
 					encType,
 					new DefaultFileRenamePolicy());
 			
-			String fileName=multi.getFilesystemName("uploadFile"); //매개변수는 form의 name
-			if(fileName == null) {
-				System.out.println("파일 업로드 안됬다");
-			}else {
-				out.print("<br>글쓴이 : " + multi.getParameter("name"));
-				out.print("<br>제 목 : " + multi.getParameter("title"));
-				out.print("<br>파 일 : " + fileName);
+			Enumeration files=multi.getFileNames();	//업로드할 파일네임 열거형(여러개의 엘리먼트로 구성)으로 받음
+			while(files.hasMoreElements()) {
+				String file=(String)files.nextElement();
+				String file_name=multi.getFilesystemName(file); //서버에 올라간 파일이름
+				String org_file=multi.getOriginalFileName(file);	
+				out.print("<br>업로드된 파일명 : " + file_name);
+				out.print("<br>원본 파일명 : " + org_file);
+				out.print("<hr>");
 			}
+			
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
