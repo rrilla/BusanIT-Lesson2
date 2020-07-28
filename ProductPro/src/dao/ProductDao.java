@@ -41,4 +41,33 @@ public class ProductDao {
 		}
 		return list;
 	}
+	
+	public boolean insert(Product product) {
+		boolean flag=false;
+		Connection conn=null;
+		PreparedStatement ps=null;
+		String sql="insert into product(name,price,pictureurl,description) value(?,?,?,?)";
+		
+		try {
+			conn=DBConn.getConn();
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, product.getName());
+			ps.setInt(2, product.getPrice());
+			ps.setString(3, product.getPictureurl());
+			ps.setString(4, product.getDescription());
+			int n=ps.executeUpdate();
+			if(n==1) {
+				flag=true;
+				System.out.println("데이터 입력 성공");
+			}else {
+				System.out.println("데이터 입력 실패");
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			DBConn.close(conn,ps);
+		}
+		return flag;
+		
+	}
 }

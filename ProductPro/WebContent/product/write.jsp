@@ -11,7 +11,7 @@
 <body>
 	<div id="wrap" align="center">
 	<h1>상품 등록 - 관리자 페이지</h1>
-	<form method="post" enctype="multipart/form-data" name="frm">
+	<form method="post" action="write.do" enctype="multipart/form-data" name="frm">
 		<table>
 			<tr>
 				<th>상품명</th><td><input type="text" name="name" size=80 /></td>
@@ -30,10 +30,10 @@
 				</td>
 			</tr>
 			<tr>
-			<td>
+			<td colspan=2 align="center">
 			<input type="submit" value="등록" onClick="check()" />
 			<input type="reset" value="다시작성" />
-			<input type="button" onClick="location.href=list.do" />
+			<input type="button" value="목록보기" onClick="location.href=list.do" />
 			</td>
 				
 		</table>
