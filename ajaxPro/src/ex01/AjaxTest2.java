@@ -21,9 +21,9 @@ public class AjaxTest2 extends HttpServlet {
 //		System.out.println("param="+param);
 		String result="";
 		result="<main><book>" +
-		"<title><![CDATA[초보자를 위한 자바 프로그래밍]]></title"+
+		"<title><![CDATA[초보자를 위한 자바 프로그래밍]]></title>"+
 		"<writer><![CDATA[인포북스 | 이병승]]></writer>"+
-		"<image><![CDATA[images/baby5.jpg]]></image>"+
+		"<image><![CDATA[images/baby3.jpg]]></image>"+
 		"</book><book>"+
 		"<title><![CDATA[모두의 파이썬]]></title>"+
 		"<writer><![CDATA[길벗 | 이승찬]]></writer>"+

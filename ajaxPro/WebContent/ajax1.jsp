@@ -11,7 +11,7 @@
 		$.ajax({
 			type:"post",
 			dataType:"xml",
-			async:false,	//동기식 처리
+			async:true,	//동기식 처리
 			url:"ajaxTest2",
 			success:function(info,textStatus){
 				$(info).find("book").each(function() {
