@@ -18,6 +18,11 @@ function addHtml() {
 function addImage() {
 	$(".a1").html("<img src='images/duke.png'>");
 }
+
+/* function fn_process() {
+	var value=${"#t_input"}.val();
+	$("#t_output").val(value);
+} */
 </script>
 </head>
 <body>
