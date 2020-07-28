@@ -57,8 +57,5 @@ public class WriteServlet extends HttpServlet {
 			String msg=URLEncoder.encode("데이터 입력 실패","UTF-8");
 			response.sendRedirect("writeForm.do?msg="+msg);
 		}
-		
 	}
-
 }
-

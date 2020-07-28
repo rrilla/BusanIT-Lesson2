@@ -57,7 +57,7 @@
 			</tr>
 			<tr>
 			<td colspan=2 align="center">
-			<input type="submit" value="등록" onClick="check()" />
+			<input type="submit" value="삭제" onClick="check()" />
 			<input type="reset" value="다시작성" />
 			<input type="button" value="목록보기" onClick="location.href=list.do" />
 			</td>
