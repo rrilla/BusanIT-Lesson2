@@ -20,9 +20,14 @@ import vo.Product;
 public class WriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+    public WriteServlet() {
+        super();
+    }
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.getRequestDispatcher("product/write.jsp").forward(request, response);
+		request.getRequestDispatcher("product/write.jsp")
+		.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,7 +38,7 @@ public class WriteServlet extends HttpServlet {
 		String encType="utf-8";
 		int maxSize=10*1024*1024;
 		MultipartRequest multi=new MultipartRequest(
-				request,
+				request, 
 				path,
 				maxSize,
 				encType,
@@ -46,13 +51,14 @@ public class WriteServlet extends HttpServlet {
 		
 		ProductDao dao=ProductDao.getInstance();
 		boolean flag=dao.insert(new Product(name,price,pictureurl,description));
-		String url="";
 		if(flag) {
 			response.sendRedirect("list.do");
 		}else {
-			String msg=URLEncoder.encode("데이터 입력 실패", "UTF-8");
+			String msg=URLEncoder.encode("데이터 입력 실패","UTF-8");
 			response.sendRedirect("writeForm.do?msg="+msg);
 		}
+		
 	}
 
 }
+
