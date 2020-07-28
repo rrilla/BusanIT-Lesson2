@@ -14,7 +14,7 @@
 		<table class="list">
 			<tr>
 				<td colspan=5 style="border: white; text-glign: right">
-					<a href="writeForm.do">상품 등록</a>
+					<a href="write.do">상품 등록</a>
 				</td>
 			</tr>
 			<tr>

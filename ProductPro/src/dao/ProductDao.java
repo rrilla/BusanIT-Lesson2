@@ -15,6 +15,33 @@ public class ProductDao {
 		return instance;
 	}
 	
+	public Product selectOne(int code){
+		Product product=null;
+		Connection conn=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		String sql="select * from product where code=?";
+		try {
+			conn=DBConn.getConn();
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, code);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				product=new Product();
+				product.setCode(rs.getInt("code"));
+				product.setName(rs.getString("name"));
+				product.setPrice(rs.getInt("price"));
+				product.setPictureurl(rs.getString("pictureurl"));
+				product.setDescription(rs.getString("description"));
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			DBConn.close(conn, ps, rs);
+		}
+		return product;
+	}
+	
 	public List<Product> selectAll(){
 		List<Product> list=new ArrayList<Product>();
 		Connection conn=null;

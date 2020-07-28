@@ -21,7 +21,8 @@ public class WriteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("product/write.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,12 +48,11 @@ public class WriteServlet extends HttpServlet {
 		boolean flag=dao.insert(new Product(name,price,pictureurl,description));
 		String url="";
 		if(flag) {
-			url="list.do";
+			response.sendRedirect("list.do");
 		}else {
-			request.setAttribute("msg", "데이터 입력 실패");
-			url="writeForm.do";
+			String msg=URLEncoder.encode("데이터 입력 실패", "UTF-8");
+			response.sendRedirect("writeForm.do?msg="+msg);
 		}
-		response.sendRedirect("url?msg=" + URLEncoder.encode("데이터 입력 실패"));
 	}
 
 }
