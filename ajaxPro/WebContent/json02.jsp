@@ -13,12 +13,18 @@
 			var age=$("#age").val();
 			var gender=$("#gender").val();
 			var nickname=$("#nickname").val();
-			var _jsonInfo = '{"name":"' + name +'","age" :'+ age',"gender":"'+gender+'","nickname":"'+nickname+'"}';
+			var jsonInfo = {
+					"name": name ,
+					"age" : age,
+					"gender":gender,
+					"nickname":nickname
+					};
+			//var _jsonInfo='{"name":"'+name+'","age":'+age+',"gender":"'+gender+'","nickname":"'+nickname+'"}';	//문자열 상태로 전송시
 			$.ajax({
 				type : "post",
 				async : false,
 				url : "json",
-				data : {jsonInfo:_jsonInfo},
+				data : jsonInfo,//{jsonInfo:_jsonInfo},
 				success : function(data,textStatus){
 					alert("전송 & 처리 성공");
 					

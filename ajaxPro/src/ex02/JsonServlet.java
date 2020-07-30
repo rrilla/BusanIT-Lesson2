@@ -18,17 +18,30 @@ public class JsonServlet extends HttpServlet {
 	
 	protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String jsonInfo = request.getParameter("jsonInfo"); //문자열 객체로 받음
+		//String jsonInfo = request.getParameter("jsonInfo"); //문자열 객체로 받음
 		//PrintWriter out = response.getWriter();
+		String name = request.getParameter("name");
+		String age = request.getParameter("age");
+		String gender = request.getParameter("gender");
+		String nickname = request.getParameter("nickname");
 		
 		try {
-			JSONParser jsonParser = new JSONParser();
-			JSONObject JsonObject = (JSONObject)jsonParser.parse(jsonInfo);
 			System.out.println("회원정보");
-			System.out.println(JsonObject.get("name"));
-			System.out.println(JsonObject.get("age"));
-			System.out.println(JsonObject.get("gender"));
-			System.out.println(JsonObject.get("nickname"));
+			System.out.println(name);
+			System.out.println(age);
+			System.out.println(gender);
+			System.out.println(nickname);
+			
+			/*
+			 * JSONParser jsonParser = new JSONParser();
+			 * JSONObject JsonObject = (JSONObject)jsonParser.parse(jsonInfo);
+			 * System.out.println("회원정보");
+			 * System.out.println(JsonObject.get("name"));
+			 * System.out.println(JsonObject.get("age"));
+			 * System.out.println(JsonObject.get("gender"));
+			 * System.out.println(JsonObject.get("nickname"));
+			 */
+			 
 			//out.print(JsonObject);
 		}catch(Exception ex) {
 			ex.printStackTrace();
