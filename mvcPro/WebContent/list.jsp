@@ -12,7 +12,7 @@
 	
 	#tblList {
 		background-color: #A6A6A6;
-		width: 600px;
+		width: 800px;
 	}
 	
 	#tblList tbody {
@@ -22,10 +22,16 @@
 </head>
 <body>
 	<div class="data">
+		<h2>아이디 목록</h2>
 		<button id="update">갱신</button>
+		<button id="update" >선택삭제</button>
 		<table id="tblList" border="1">
 		<thead>
 			<tr>
+				<th>
+				<input type="checkbox" id="allCheck" /> 삭제
+				</th>
+				<th>수정</th>
 				<th>번호</th>
 				<th>아이디</th>
 				<th>비번</th>
@@ -44,23 +50,24 @@
 			<!-- 글 수정 위해 글번호 배치할 용도. -->
 			<input type="hidden" name="bno" id="bno">
 			<br /><br />
-			<table><h2>아이디 수정</h2>
+			<table><h2>아이디 수정,생산</h2>
 				<tr>
 					<th>아디 - </th>
-					<td><input type="text" name="title" id="title" ></td>
+					<td><input type="text" name="id" id="id" ></td>
 					<!-- required 무조건 입력하게,미입력시 말풍선 (브라우저에서 검증)-->
 					
 				</tr>
 				<tr>
 					<th>이름 - </th>
-					<td><input type="text" name="content" id="content" /></td>
+					<td><input type="text" name="name" id="name" /></td>
 				</tr>
-				<!-- <tr>
-					<th>작성자</th>
-					<td><input type="text" name="writer" id=writer></td>
-				</tr> -->
+				<tr>
+					<th>비번 - </th>
+					<td><input type="password" name="pw" id=pw></td>
+				</tr>
 				<tr>
 					<td colspan=2 align="center">
+						<input type="button" value="생산" id="btnAdd">
 						<input type="button" value="수정" id="btnModify">
 						<input type="reset" value="다시">
 					</td>
@@ -68,8 +75,9 @@
 			</table>
 		</form><br /><br /><br />
 	</div>
-	<div class="addId">
+	<!-- <div class="addId">
 		<form id="addFrm">
+			<input type="hidden" name="no" id="no">
 			<table><h2>아이디 생산</h2>
 				<tr>
 					<th>아디 - </th>
@@ -89,16 +97,10 @@
 				</td>
 			</table>
 		</form>
-	</div>
+	</div> -->
 	
 <script src="js/jquery-3.5.1.min.js"></script>
 <script>
-	
-	$('#update').click(function () {
-		getList();
-		alert("갱신됨!")
-	});
-
 	function getList() {
 		$.ajax({
 			url: 'servlet',
@@ -114,17 +116,49 @@
 	function processList(list) {
 		var str = '';
 		
-		for (let Member of list) {
+		for (let member of list) {
 			str += '<tr>';
-			str += '<td>' + Member.no + '</td>';
-			str += '<td>' + Member.id + '</td>';
-			str += '<td>' + Member.pw + '</td>';
-			str += '<td>' + Member.name + '</td>';
-			str += '<td>' + Member.reg_date + '</td>';
+			str += '<td><input type="checkbox" name="no" value="' + member.no + '"></td>' + member.no + '</td>';
+			str += '<td><input type="radio" name="modify" data-content="' + member.pw + '" ></td>';
+			str += '<td>' + member.no + '</td>';
+			str += '<td>' + member.id + '</td>';
+			str += '<td>' + member.pw + '</td>';
+			str += '<td>' + member.name + '</td>';
+			str += '<td>' + member.reg_date + '</td>';
 			str += '</tr>';
 		}
 		$('#tblList > tbody').html(str);
 	}
+	
+	$('#update').click(function () {	//갱신버튼 클릭시 동작
+		getList();
+		alert("갱신됨!")
+	});
+	
+	$('#tblList').on('click', 'input:radio[name="modify"]',function () {
+		//closest()가장 가까운 부모찾아감
+		var no = $(this).closest('tr').find('td:nth-child(3)').html();
+		var id = $(this).closest('tr').find('td:nth-child(4)').html();
+		var name = $(this).closest('tr').find('td:nth-child(6)').html();
+		//var pw = $(this).closest('tr').find('td:nth-child(5)  a').html();
+		
+		$('#no').val(no);
+		$('#id').val(id);
+		$('#name').val(name);
+		//$('#pw').val(pw); //db 비번 비교후 수정완료
+	});
+	
+	$('#allCheck').on('click', function () {
+		if ($(this).prop('checked')) {
+			$('input:checkbox[name="no"]').prop('checked', true);
+		}else {
+			$('input:checkbox[name="no"]').prop('checked', false);
+		}
+	});
+	
+	$('#')
+
+	
 </script>
 <script>
 	getList();
