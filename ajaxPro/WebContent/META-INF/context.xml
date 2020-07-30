@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<context>
+	<Resource 
+		name="jdbc/jspOracle" 
+		auth="Container"
+		type="javax.sql.DataSource" 
+		driverClassName="oracle.jdbc.driver.OracleDriver"
+		url="jdbc:oracle:thin:@localhost:1521:xe" 
+		username="jsp"
+		password="1234" 
+		maxTotal="20" 
+		maxIdle="10" 
+		maxWaitMillis="-1" />
+		
+	<Resource 
+		name="jdbc/mySQL_db" 
+		auth="Container" 
+		type="javax.sql.DataSource"
+     	maxTotal="100" 
+     	maxIdle="30" 
+     	maxWaitMillis="10000"
+        username="hjh" 
+        password="1234" 
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/hjh_db"/>
+	
+</context>
