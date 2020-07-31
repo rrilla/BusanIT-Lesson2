@@ -157,7 +157,6 @@
 	});
 	
 	$('#btnModify').on('click', function () {
-		
 		var str = $('#frm').serialize();	//자동으로 쿼리스트링(name=입력값)으로 전송
 		console.log(str);
 		 
@@ -191,30 +190,18 @@
 			data: str,
 			success: function(result) {	//result라는 변수로 응답값을 받음
 				alert(result);
-			
 				getList()
 			},
 			error: function (e) {
 				alert('에러에러에러에러에러에ㅓㄹ에ㅓ레어에ㅓㄹ에ㅓ레어레어레어레어레얼에러');
 			}
-				
 			//data: 'title=sdf&content=sdf&writer=sdf'	//serialize()가 이걸 전송해줌
 		}); 
-		
 		$(this).reset();
-		
 		return false;
 	});
 	
-	
-	
-	
-	
 	$('#btnAdd')
-	
-	
-
-	
 </script>
 <script>
 	getList();
