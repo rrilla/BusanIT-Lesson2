@@ -99,4 +99,37 @@ public class MemberDao {
 		}
 		return flag;
 	}
+	
+	public void update(Member member) {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		String sql="update member set id=?, name=?, "
+				+ "pw=? where no=?";
+		try {
+			System.out.println("업뎃시작");
+			conn=getConn();
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, member.getId());
+			ps.setString(2, member.getName());
+			ps.setString(3, member.getPw());
+			ps.setInt(4, member.getNo());
+			int n=ps.executeUpdate();
+			if(n==1) {
+				System.out.println("데이터 업뎃성공");
+			}else {
+				System.out.println("데이터 업뎃실패");
+			}
+		}catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				if (ps != null)
+				ps.close();
+				if (conn != null)
+				conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

@@ -48,7 +48,7 @@
 	<div class="input-container">
 		<form id="frm" >
 			<!-- 글 수정 위해 글번호 배치할 용도. -->
-			<input type="hidden" name="bno" id="bno">
+			<input type="hidden" name="no" id="no">
 			<br /><br />
 			<table><h2>아이디 수정,생산</h2>
 				<tr>
@@ -156,7 +156,36 @@
 		}
 	});
 	
-	$('#')
+	$('#btnModify').on('click', function () {
+		
+		var str = $('#frm').serialize();	//자동으로 쿼리스트링(name=입력값)으로 전송
+		console.log(str);
+		 
+		$.ajax({
+			url: 'servlet',
+			method: 'PUT',
+			data: str,
+			success: function(result) {
+				alert(result);
+			
+				getList()
+			},
+			error: function (e) {
+				alert('에러에러에러에러에러에ㅓㄹ에ㅓ레어에ㅓㄹ에ㅓ레어레어레어레어레얼에러');
+			}
+				
+			//data: 'no=??&id=??&name=??&pw=??'	
+		}); 
+		
+		//$(this).reset();
+		
+	});
+	
+	
+	
+	$('#btnAdd')
+	
+	
 
 	
 </script>

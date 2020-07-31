@@ -17,6 +17,14 @@ public class Member {
 		this.pw = pw;
 		this.name = name;
 	}
+	
+	public Member(int no, String id, String pw, String name) {
+		super();
+		this.no = no;
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+	}
 
 	public Member(int no, String id, String pw, String name, Date reg_date) {
 		super();

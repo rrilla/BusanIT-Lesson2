@@ -65,4 +65,33 @@ public class Servlet extends HttpServlet {
 		out.close();
 	}
 
+	protected void doPut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("doPut() 호출됨");
+		
+		String no = request.getParameter("no")== null ? "" : request.getParameter("no");
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String pw = request.getParameter("pw");
+		
+		System.out.println("1");
+		System.out.println(no+id+name+pw);
+		
+		Member member = new Member();
+		member.setNo(Integer.parseInt(no));
+		member.setId(id);
+		member.setName(name);
+		member.setPw(pw);
+		
+		System.out.println("1");
+		
+		MemberDao memberDao = MemberDao.getInstance();
+		memberDao.update(member);
+		
+		response.setContentType("text/html; charset=UTF-8"); // 응답에서 최종적 인코딩방식 설정,jsp 설정에도 있음
+		PrintWriter out = response.getWriter();
+		out.print("ㅊㅋ글 수정성공"); 
+		out.close();
+	}
+	
 }
