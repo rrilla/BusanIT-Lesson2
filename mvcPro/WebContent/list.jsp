@@ -167,6 +167,30 @@
 			data: str,
 			success: function(result) {
 				alert(result);
+				getList()
+			},
+			error: function (e) {
+				alert('에러에러에러에러에러에ㅓㄹ에ㅓ레어에ㅓㄹ에ㅓ레어레어레어레어레얼에러');
+			}
+			//data: 'no=??&id=??&name=??&pw=??'	
+		}); 
+		//$(this).reset();
+	});
+	
+	$('#frm').submit(function (event) {
+		//event.preventDefault(); // from 객체의 기본동작인 action 요청을 막음
+		
+		//var title = $('input[name="title"]').val();
+		
+		var str = $(this).serialize();	//자동으로 쿼리스트링(name=입력값)으로 전송
+		console.log(str);
+		 
+		$.ajax({
+			url: 'servlet',
+			method: 'POST',
+			data: str,
+			success: function(result) {	//result라는 변수로 응답값을 받음
+				alert(result);
 			
 				getList()
 			},
@@ -174,12 +198,15 @@
 				alert('에러에러에러에러에러에ㅓㄹ에ㅓ레어에ㅓㄹ에ㅓ레어레어레어레어레얼에러');
 			}
 				
-			//data: 'no=??&id=??&name=??&pw=??'	
+			//data: 'title=sdf&content=sdf&writer=sdf'	//serialize()가 이걸 전송해줌
 		}); 
 		
-		//$(this).reset();
+		$(this).reset();
 		
+		return false;
 	});
+	
+	
 	
 	
 	
