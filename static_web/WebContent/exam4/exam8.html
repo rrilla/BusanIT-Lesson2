@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+		.container {
+			width: 1000px;  /* 데스크탑 기준 평균 */
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		.header, .footer {
+			height: 200px;
+			background-color: yellow;
+			border-radius: 50px; 
+		}
+		
+		.footer {
+			background-color: fuchsia;
+		}
+	
+		.container, .container > * {
+			border: 1px dashed red;
+		}
+		
+		div.section {
+			display: flex;
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+		
+		div.section > .item:nth-child(1) {
+			flex-basis: 300px;/* 기본크기(가로) */
+			height: 500px;
+			background-color: pink;
+			border-radius: 50px;
+			margin-right: 15px;
+		}
+		
+		div.section > .item:nth-child(2) {
+			flex-basis: 700px;/* 기본크기(가로) */
+			height: 700px;
+			background-color: green;
+			border-radius: 50px;
+		}
+		
+		
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="header">div id="header"</div>
+		
+		<div class="section" >
+			<div class="nav item">div id="nav"</div>
+<!-- class이름은 공백기준으로 여러개의 이름보유가능,id는 불가 -->
+			<div class="content item">div id="content"</div>
+		</div>
+		
+		<div class="footer">div id="footer"</div>
+	</div>
+
+	
+
+</body>
+</html>

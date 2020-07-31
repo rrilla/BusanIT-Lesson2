@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>  <!-- setTimeout : 일정시간 딜레이 후 함수호출 -->
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+		span#clock {
+			border: 1px dashed black;
+			background-color: red;
+			font-weight: bold;
+			padding: 20px;
+			border-radius: 15px;
+			display: inline-block;
+		}
+	</style>
+
+</head>
+<body>
+
+	<div class="container">
+		<h2>digital 시계</h2>
+		<p>
+			시계: <span id="clock"></span>
+			<button id="btnStop" type="button">시계 중지</button>
+		</p>
+	</div>
+	<button id="btn" type="button">버튼 꾺</button>
+	
+<script>
+	var span = document.querySelector('.container span#clock');
+
+	var id = setInterval(function () {
+		var today = new Date();
+		var str = today.toLocaleTimeString();
+		/* var span = document.querySelector('.container span#clock'); */
+		span.innerText = str;
+	}, 1000)
+	
+	var btnStop = document.querySelector('#btnStop');
+	btnStop.addEventListener('click' , function () {
+		clearInterval(id);
+	})
+	
+	/* setTimeout(function () {
+			 alert('네이버로 감');
+			 location.href = 'http://www.naver.com';
+		 }, 2000); */
+
+	var btn = document.querySelector('button#btn');
+	btn.addEventListener('click', function () {
+		 //setTimeout() : 일정시간(밀리초(1초=1000밀리초)) 
+		 				//이후에 특정함수를 호출함
+		setTimeout(function () {
+			 alert('네이버로 감');
+			 location.href = 'http://www.naver.com';
+		 }, 2000);
+	});
+</script>
+</body>
+</html>

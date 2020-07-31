@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div class="container">
+	<button id="btn" type="button">버튼</button>
+	<h1>제목1</h1>
+	<h1 id="aa">제목2</h1>
+	<h1 class="bb">제목3</h1>
+	<p>본문내용</p>
+</div>
+
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script>
+	/* var btn = document.querySelector('button#btn');	//순수 자바스크립트-클릭시 설정색으로 변경
+	btn.addEventListener('click', function () {
+		var arr = document.querySelectorAll('div.container *');
+		for (let item of arr) {
+			item.style.color = 'orange';
+		}
+	}); */
+
+	$('button#btn').on('click',function () {	//addEventListener랑 비슷,클릭했을 때 설정 색으로 변경
+		//전체 선택자
+		$('div.container *').css('color', 'orange');
+		//태그 선택자
+		$('h1').css('color','red');
+		//아이디 선택자
+		$('h1#aa').css('color', 'blue');
+		//클래스 선택자
+		$('h1.bb').css('color', 'green');
+		
+	}); 
+
+	
+
+</script>
+
+<script>
+	//jQuery
+	//ready()함수 : document가 준비됬을 때 함수정의를 자동호출
+	/* jQuery(document).ready(function () {	//jQuery 함수 에 도큐멘트 전달,위치가 젤 마지막이라 없어도 괜찮 문서전에 사용시 필요
+		alert('브라우저가 웹문서를 다읽어서 document 객체가 준비됨');
+	});      */
+	
+	/* $(document).ready(function () {	//jQuery 함수 에 도큐멘트 전달,위치가 젤 마지막이라 없어도 괜찮 문서전에 사용시 필요
+		alert('브라우저가 웹문서를 다읽어서 document 객체가 준비됨');
+	}); */
+	
+	$(function (){
+		alert('브라우저가 웹문서를 다읽어서 document 객체가 준비됨');
+	});
+	
+	
+</script>
+</body>
+</html>

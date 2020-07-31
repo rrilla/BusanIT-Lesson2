@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>라디오 버튼</h1>
+	
+	<form action="a.jsp" method="get">
+	
+	<input type="radio" id="male" name="gender" value="male" />
+	<label for= "male">남성</label>
+	<br>
+	<input type="radio" id="female" name="gender" value="female" checked />
+	<label for= "female">여성</label>
+	<br>
+	
+	<input type="text" name="subject" value="글제목1" placeholder="글제목쓰셈" required>
+	<br>
+	
+	<textarea name="content"  cols="30" rows="10" placeholder="글내용쓰셈">글내용1</textarea>
+	<br>
+	
+	<select name="cars" ><!--  multiple><multiple>-->
+		<option value="bmw">BMW</option>
+		<option value="benz">Benz</option>
+		<option value="hyundai" selected>현대자동차</option>
+		<option value="kia">기아자동차</option>
+	</select>
+	<br>
+	
+	
+	</select>
+	
+	<input type="submit" value="등록">
+	<input type="reset" value="초기화">
+	</form>
+	
+</body>
+</html>

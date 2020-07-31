@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+/* 전체 선택자 */
+* {
+	color: gray;
+}
+
+h1 {
+	background-color: orange;
+ 	border: 2px solid red;      /*경계선 2픽셀 실선 red */
+}
+p {
+	background-color:olive;
+}
+/* 아이디선택자 */
+p#tatle1{
+	color: pink;
+}
+/* 자식 선택자 */
+div > h1{
+	background-color: purple;
+}
+/* 자손 선택자 */
+div span {
+	background-color: lightblue;
+	color: yello;
+	font-style: italic;
+}
+/* 클래스 선택자 */
+p.target{
+	font-style: italic;
+}
+/* 의사클래스 선택자 */
+a:link{
+	color:black;
+	text-decoration: 
+}
+a:visited{
+	color:fuchsia;
+}
+a:hover{
+	color:navy;
+}
+div#container>p:first-child {
+	background-color: red;
+}
+div#container>p:nth-child(2){
+	background-color: orange;
+}
+div#container>p:nth-child(3){
+	background-color: green;
+}
+div#container>p:last-child(){
+	background-color: blue;
+}
+
+table > tbody > tr:nth-child(2n+1){/*테이블의 홀수행*/
+	background-color: lightgray;
+}
+
+table > tbody > tr:nth-child(2n){/*테이블의 홀수행*/
+	background-color: pink;
+}
+/* 속성 선택자 */
+input[name] {
+	background-color: yello;
+}
+
+input[name="email"]{
+	background-color: aqua;
+}
+</style>
+</head>
+<body>
+	<h1>요는 제목</h1>		
+	<h2 class="target">소제목임 ㅎ</h2>
+	<p id="tatle1">요는 한 문단(아이디 선택자)</p>
+	
+	<hr>
+		
+	<h1>요는 제목2</h1>		
+	<h2>소제목임 ㅎ</h2>
+	<p class="target">요는 두번째 한 문단(클래스선택자)</p>
+	
+	<div>           
+		<h1>this is <span>세번째(자손선택자)</span> 제목(자식선택자)</h1>
+		<h2>소제목임 ㅎ</h2>
+		<a href="http://www.naver.com">네이버 ㄱㄱ</a>
+	</div>
+	
+	<div id="container">
+		<p>문단1</p>
+		<p>문단2</p>
+		<p>문단3</p>
+		<p>문단4</p>
+	</div>
+	<table border="1">
+		<caption>테이블 제목 or 설명글</caption>
+		<thead>
+			<tr>
+				<th>1열</th>
+				<th>2열</th>
+				<th>3열</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1행 1열</td>
+				<td>1행 2열</td>
+				<td>1행 3열</td>
+			</tr>
+			<tr>
+				<td>2행 1열</td>
+				<td>2행 2열</td>
+				<td>2행 3열</td>
+			</tr>
+			<tr>
+				<td>3행 1열</td>
+				<td>3행 2열</td>
+				<td>3행 3열</td>
+			</tr>
+			<tr>
+				<td>4행 1열</td>
+				<td>4행 2열</td>
+				<td>4행 3열</td>
+			</tr>
+			</tbody>
+	</table>
+	
+	<form action="">
+		<input type="text" name="name" placeholder="이름쓰셈." required>
+		<br>
+		<input type="password" name="passwd" placeholder="비번쓰셈."required>
+		<br>
+		<input type="email" name="email" placeholder="이메일쓰셈."required>
+		<br>
+		<input type="submit" value="등록ㄱ">
+	</form>
+</body>
+</html>

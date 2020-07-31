@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<input type="text" name="id" placeholder="아이디입력" /><br>
+	
+	<input type="radio" name="gender" value="mail" />남성
+	<input type="radio" name="gender" value="femail" />여성
+	
+	<script>
+		var txtId = document.querySelector('input[name="id"]');
+		// change 이벤트: 값의 변경이 발생되면 함수정의 호출함
+		// keypress 이벤트: 키보드 문자키를 눌렀을때 발생
+		//	keyup 이벤트: 눌렀던 키를 뗐을 때 발생 
+		txtId.addEventListener('keydown', function (event) {
+			//var id = txtId.value;
+			var id = event.target.value;
+			console.log(id);
+		});
+	</script>
+</body>
+</html>

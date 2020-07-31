@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	#container img {
+		width: 300px;
+		height: 300px;
+		transition: all 1s;
+		
+	}
+</style>
+</head>
+<body>
+
+	<div id="container">
+		<button type="button" id="btn">버튼</button>
+		
+		<img src="../images/image3.png">
+		<img src="../images/image2.jpg">
+		<img src="../images/image4.jpg">
+	</div>
+
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script>
+	$('#btn').click(function () {
+		$('img').css('width', '150px').css('height', '150px');  //배열이면 객체가 리턴됨(메소드 체이닝 기법)
+		/* $('img').css('height', '150px'); */
+		
+		$('img').css({
+			width: '150px',
+			height: '150px'
+		});
+		//문서객체(태그) 속성값 제어 메소드= prop(), attr()
+		var str = $('img:first').prop('src');// prop()의 동작은 웹개발자 관점으로 수행
+		console.log('prop() : '+str);					//ex) 체크박스 선택상태(checked속성) 값 true/false로 리턴
+		
+		str = $('img:first').attr('src');// attr()의 동작은 웹퍼블리셔 관점으로 수행
+		console.log('attr() : '+str);				//ex) 체크박스 선택 값 태그에 값을 가져옴.
+		
+		/* $('img:first').attr('src', '../images/image4.jpg'); */
+		$('img').attr('src', '../images/image3.png');
+	});
+	
+</script>
+</body>
+</html>

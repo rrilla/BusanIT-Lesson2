@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div class="container">
+	<button type="button" id="btn">버튼!</button><br>
+	<div>div-1</div>
+	<div>div-2</div>
+	<div>div-3</div>
+	<h1>heading-1</h1>
+	<h1>heading-2</h1>
+	<h1>heading-3</h1>
+	</div>
+
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script>
+	//자바스크립트의 innerText는 제이쿼리의 Text()함수로 사용
+	//자바스크립트의 innerHTML는 제이쿼리의 html()함수로 사용
+	$('#btn').click(function () {    //btn을 클릭했을때 함수동작
+		var h = $('.container > h1').html();	//getter
+		console.log('html() : ' + h)
+		
+		var t = $('.container > h1').html();	//getter
+		console.log('text() : ' + t)
+		
+		//$('.container > div').html('<h1>html Method</h1>');
+		$('.container > div').text('<h1>text Method</h1>');
+	});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+let num = Math.floor(Math.radom()*5) + 1;
+document.write(num + "<br>");
+
+</script>
+</head>
+<body>
+	
+<script>
+	//Math.Radom() 연습
+	//호출하면 0이상 1미만의 임의의 실수 리턴
+	//0.0~~~~0.999999999....
+	//1 ~ 5 사이의 임의의 정수를 만들고 싶다.
+	
+	//Math.floor(Math.random()*5 //0.9 * 5 = [4].5
+	// 0~4 사의의 임의의 정수가 나옴
+	
+	let num = Math.floor(Math.radom()*5) + 1;
+	document.write(num + "<br>");
+	
+	// =================================
+	
+	let myArr = [10, 7, 23, 99, 169,  19, 11, 1];
+	myArr.sort();
+	document.write(myArr + "<br>");
+	
+	let b = function (a,b) {
+		return a - b;
+	};
+	myArr.sort(handle);
+	document.writer(myArr + '<br>');
+	
+	//자바스크립트는 함수형 언어의 특징이 강함
+	let a = 10;
+	a = '문자열';
+	a = true;
+	
+	a = { name: '홍길동', age: 33};
+	
+	a = function () {
+		console.log(name + 'ㅎㅇ');
+	};
+	
+	a('춘향');
+	
+	
+	
+	
+</script>
+	<script type="text/javascript" src="./js/main/js?ver=123"></script>
+</body>
+</html>

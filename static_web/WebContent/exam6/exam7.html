@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div class="container">
+	<div>div-1</div>
+	<div>div-2</div>
+	<div>div-3</div>
+	
+	<h1>heading-1</h1>
+	<h1>heading-2</h1>
+	<h1>heading-3</h1>
+	
+</div>
+
+<script src="../js/jquery-3.5.1.min.js"></script>
+<script>
+	// click, mouseover, ....
+	$('.container > div').click(function () {	//마우스클릭하면 append(뒤에추가)
+		$(this).append('♨');
+	});
+	
+	$('.container > h1').on('mouseover', function (){
+		/* $(this).append('♨'); */
+		$('♨').appendTo($(this));
+	})
+</script>
+</body>
+</html>

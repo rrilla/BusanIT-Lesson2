@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<style>
+		@keyframes myanim {
+			0% {
+				left: 0px;
+				top: 0px;
+			}
+			
+			25% {
+				left: 400px;
+				top: 800px;
+			}
+			
+			50% {
+				left: 400px;
+				top: 500px;
+			}
+			
+			75% {
+				left: 800px;
+				top: 0px;
+			}
+			
+			100% {
+				left: 0px;
+				top: 0px;
+			}
+		
+		}
+		div {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			position: relative;
+			
+			animation-name: myanim;
+			animation-duration: 1s;
+			/* 필수속성 */
+			animation-iteration-count: infinite;
+		}
+		
+		div:hover {
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div>
+	
+	</div>
+</body>
+</html>

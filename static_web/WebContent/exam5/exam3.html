@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<h3>덧셈 계산기</h3>
+	<button type="button" onclick="changeColor()">클릭</button>
+	
+	<label for="x">첫째 정수</label>
+	<input type="text" id="x" />
+	<br>
+	
+	<label for="y">둘째 정수</label>
+	<input type="text" id="y" />
+	<br>
+	<label for="sum">합</label>
+	<input type="text" id="sum" />
+	<br>
+	<button type="button" onclick="calc()">계산</button>
+<script>
+ function changeColor(){
+	var heading = document.querySelevtor('h3');
+	heading.style.color = 'red';
+	heading.style.backgroundColor = 'yellow';
+ }
+</script>	
+	
+	
+<script>
+	function calc() {
+		/* var inputX = document.getElementById('x'); */
+		var inputX = document.getElementById('x');
+		var x = inputX.value;
+		console.log('typeof x : ' + typeof x);
+		
+		var inputX = document.getElementById('y');
+		console.log('typeof y : ' + typeof y);
+		
+		var sum = parseInt(x) + parseInt(y);
+		console.log('sum : ' + sum);
+		
+		var inputSum = document.getElementById('sum');
+		inputSum.value = sum;
+	}
+</script>
+</body>
+</html>

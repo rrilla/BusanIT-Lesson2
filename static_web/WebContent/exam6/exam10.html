@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.container div, .container p {
+		display: none;
+	}
+	
+	h1 {
+	cursor: pointer;
+	}
+</style>
+</head>
+<body>
+
+	<div class="container">
+		<h1>열기&닫기</h1>
+		<div>
+			<h1>제목1</h1>
+			<p>내용1</p>
+		</div>
+
+		<h1>열기&닫기</h1>
+		<div>
+			<h1>제목1</h1>
+			<p>내용1</p>
+		</div>
+	</div>
+
+	<script src="../js/jquery-3.5.1.min.js"></script>
+	<script>
+		// 효과 show()        hide()     toggle()
+		//      slideDown()   slideUp()  slideToggle()
+		//		fadeIn()      fadeOut()  fadeToggle()
+		
+		// 태그요소 검색
+		// next()  prev()  형제관계에서 다음 또는 이전 요소 가져오기
+		// closest(선택자) : 가장 가까운 부모중에 해당요소 한개를 가져오기
+		// find(선택자) : 가장 가까운 자손중에 해당요소 한개 가져오기
+		
+		//'h1' 클릭 이벤트
+		$('h1').click(function () {
+			$(this).next().slideToggle(2000);
+			/* $(this).next().slideToggle(2000, function () {
+				 alert('전환 효과 끝'); 
+			}); *//* 효과 내에 효과끝나고 일어날 함수 추가 가능 */
+		});
+	</script>
+</body>
+</html>

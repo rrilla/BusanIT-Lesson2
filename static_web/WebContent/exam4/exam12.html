@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+	<style>
+		@keyframes bounce{
+			/* 0% */from {
+				bottom: 0px;
+				right: 600px;
+				animation-timing-function: ease-out;/* 다음시점 */
+			}
+			
+			50% {
+				bottom: 800px;
+				right: 0px;
+				animation-timing-function: ease-in; /*  */
+			}
+			
+			/* 100% */to {
+				botton: 0px;
+				right: 300px;
+			}
+		}
+		
+		div#ball {
+			width: 200px;
+			height: 200px;
+			background-color: maroon;
+			border-radius: 50%;
+			
+			position: absolute;
+			bottom: 0px;
+			
+			animation-name: bounce;
+			animation-duration: 1s;
+			animation-iteration-count: infinite;
+		}
+	</style>
+
+</head>
+<body>
+
+	<div id="ball">
+	
+	</div>
+
+</body>
+</html>

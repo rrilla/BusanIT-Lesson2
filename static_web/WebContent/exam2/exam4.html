@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
+<style>
+body {
+	font-size: 20pt;
+}
+p {
+	font-family: 'Gugi', cursive;
+	font-size: 1em;
+}
+
+p#t2 > span {
+	font-family: 궁서, serif;
+	font-size: 2rem;
+}
+
+h1 {
+	text-align: center;
+	text-shadow: 10px 10px 50px #FF0000;
+	color: white;
+}
+
+p.test {
+	border: 2px solid red;
+ 	width: 200px; 
+/*  	word-wrap: break-word;  */
+	
+	
+}
+/* 텍스트 다중컬럼 */
+p.cols {
+	border: 2px solid red;
+	column-count: 5;
+	column-rule: outset;
+	column-gap: 100px;
+}
+</style>
+</head>
+<body>
+	<h1>제목!!!!</h1>
+	<p class="cols">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas adipisci placeat illum cumque at sed similique dolore tempore laudantium hic ullam non beatae reiciendis aperiam consequuntur exercitationem nostrum aut voluptas.
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium necessitatibus harum aliquid nesciunt sapiente sequi labore unde doloribus dicta asperiores dolores officiis! Vel debitis eaque reiciendis nam provident aspernatur?
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam tempore non commodi harum reiciendis recusandae corrupti quas saepe natus maiores pariatur vel ex architecto excepturi sit consequuntur nam perferendis totam.
+	</p>
+
+	<p id="t1">문단</p>
+	<p id="t2"><span>문단</span></p>
+	<p id="t3">문단</p>
+	
+	<p class="test">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas adipisci placeat illum cumque at sed similique dolore tempore laudantium hic ullam non beatae reiciendis aperiam consequuntur exercitationem nostrum aut voluptas.
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum praesentium necessitatibus harum aliquid nesciunt sapiente sequi labore unde doloribus dicta asperiores dolores officiis! Vel debitis eaque reiciendis nam provident aspernatur?
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam tempore non commodi harum reiciendis recusandae corrupti quas saepe natus maiores pariatur vel ex architecto excepturi sit consequuntur nam perferendis totam.
+	</p>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.container > img {
+		width: 200px;
+		height: 200px;
+	}
+</style>
+</head>
+<body>
+
+	<div class="container">
+		<button type="button" id="btnStart">시작버튼</button> <!-- disabled = 사용불가 -->
+		<button type="button" id="btnStop">종료버튼</button> <!-- disabled = 사용불가 -->
+
+		<img src="../images/image3.png"> 
+		<img src="../images/image2.jpg">
+		<img src="../images/image4.jpg">
+		<img src="../images/image4.jpg">
+	</div>
+
+	<script src="../js/jquery-3.5.1.min.js"></script>
+	<script>
+		$('#btnStart').click(function () {
+			
+			taskId = setInterval(function () {
+				$('.container > img').first().appendTo('.container');
+				
+				//$('.container').append($('.container > img'))
+				
+			}, 500);
+		
+			$(this).prop('disabled', true);
+			$('#btnStop').prop('disabled', false);
+		});
+		
+		$('#btnStop').click(function () {
+			clearInterval(taskId);
+			
+			$(this).prop('disabled', true);
+			$('#btnStart').prop('disabled', false);
+		})
+	</script>
+</body>
+</html>
+
+<!-- $('.container > img').attr({width: 250, height: 250});/* .attr('width', '250').attr('height', '250'); */
+			/* .attr({width: 250, height: 250});  	//버튼 클릭했을때 이미지 가로세로 크기 수정-->  
