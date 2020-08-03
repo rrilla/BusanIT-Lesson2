@@ -41,6 +41,7 @@ public class MemberDao {
 		}
 		return list;
 	}
+	
 	public Member selectOne(int no){
 		Member member=null;
 		Connection conn=null;
@@ -65,7 +66,6 @@ public class MemberDao {
 		}finally {
 			DBConn.close(conn, ps, rs);
 		}
-		
 		return member;
 	}
 	
@@ -78,9 +78,9 @@ public class MemberDao {
 		try {
 			conn=DBConn.getConn();
 			ps=conn.prepareStatement(sql);
-			ps.setNString(1, member.getId());
-			ps.setNString(2, member.getPw());
-			ps.setNString(3, member.getName());
+			ps.setString(1, member.getId());
+			ps.setString(2, member.getPw());
+			ps.setString(3, member.getName());
 			int n=ps.executeUpdate();
 			if(n==1) {
 				flag=true;
