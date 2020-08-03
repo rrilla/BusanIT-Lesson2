@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="member" method="post">
-<input type="hidden" name="command" value="join">	<!-- 주소url ==  command=join -->
+<form action="join.do" method="post">
+<!-- <input type="hidden" name="command" value="join"> --> <!-- command=join -->
 <table>
 	<tr><th>아이디</th><td><input type="text" name="id"></td></tr>
 	<tr><th>비밀번호</th><td><input type="password" name="pw"></td></tr>

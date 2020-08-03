@@ -41,17 +41,16 @@ public class MemberDao {
 		}
 		return list;
 	}
-	
-	public Member selectOne(String id){
+	public Member selectOne(int no){
 		Member member=null;
 		Connection conn=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		String sql="select * from member where id=?";
+		String sql="select * from member where no=?";
 		try {
 			conn=DBConn.getConn();
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, id);
+			ps.setInt(1, no);
 			rs=ps.executeQuery();
 			if(rs.next()) {
 				member=new Member();
@@ -66,6 +65,7 @@ public class MemberDao {
 		}finally {
 			DBConn.close(conn, ps, rs);
 		}
+		
 		return member;
 	}
 	
@@ -73,25 +73,27 @@ public class MemberDao {
 		boolean flag=false;
 		Connection conn=null;
 		PreparedStatement ps=null;
-		String sql="insert into member(no,id,pw,name) values(member_seq.nextval,?,?,?)";
+		String sql="insert into member(no,id,pw,name) "
+				+ "values(member_seq.nextval,?,?,?)";
 		try {
 			conn=DBConn.getConn();
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, member.getId());
-			ps.setString(2, member.getPw());
-			ps.setString(3, member.getName());
+			ps.setNString(1, member.getId());
+			ps.setNString(2, member.getPw());
+			ps.setNString(3, member.getName());
 			int n=ps.executeUpdate();
 			if(n==1) {
 				flag=true;
-				System.out.println("insert O");
+				System.out.println("데이터 입력 성공");
 			}else {
-				System.out.println("insert X");
+				System.out.println("데이터 입력 실패");
 			}
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}finally {
 			DBConn.close(conn, ps);
 		}
+		
 		return flag;
 	}
 	
@@ -99,7 +101,7 @@ public class MemberDao {
 		boolean flag=false;
 		Connection conn=null;
 		PreparedStatement ps=null;
-		String sql="update member set pw=?,name=? where no=?";
+		String sql="upddate member set pw=?,name=? where no=?";
 		try {
 			conn=DBConn.getConn();
 			ps=conn.prepareStatement(sql);
@@ -109,9 +111,9 @@ public class MemberDao {
 			int n=ps.executeUpdate();
 			if(n==1) {
 				flag=true;
-				System.out.println("update O");
+				System.out.println("데이터 수정 성공");
 			}else {
-				System.out.println("update X");
+				System.out.println("데이터 수정 실패");
 			}
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -120,22 +122,21 @@ public class MemberDao {
 		}
 		return flag;
 	}
-	
-	public boolean delete(String id){
+	public boolean delete(int no){
 		boolean flag=false;
 		Connection conn=null;
 		PreparedStatement ps=null;
-		String sql="delete from member where id=?";
+		String sql="delete from member where no=?";
 		try {
 			conn=DBConn.getConn();
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, id);
+			ps.setInt(1, no);
 			int n=ps.executeUpdate();
 			if(n==1) {
 				flag=true;
-				System.out.println("delete O");
+				System.out.println("데이터 삭제 성공");
 			}else {
-				System.out.println("delete X");
+				System.out.println("데이터 삭제 실패");
 			}
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -144,5 +145,6 @@ public class MemberDao {
 		}
 		return flag;
 	}
+
 
 }

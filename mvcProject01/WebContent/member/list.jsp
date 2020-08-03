@@ -10,23 +10,31 @@
 </head>
 <body>
 <c:if test="${not empty param.msg }">
-	<script type="text/javascript">
-		alert(${param.msg})
-	</script>
+<script type="text/javascript">
+	alert("${param.msg}")
+</script>
 </c:if>
 <a href="member?command=joinForm">회원가입</a>
 <table>
-<tr><th>no</th><th>아디</th><th>이름</th><th>가입일</th><th>수정</th><th>삭제</th></tr>
+<tr><th>no</th><th>id</th><th>이름</th><th>가입일</th><th>수정</th><th>삭제</th></tr>
 <c:forEach items="${list }" var="member">
 <tr>
 	<td>${member.no }</td>
 	<td>${member.id }</td>
 	<td>${member.name }</td>
-	<td><fmt:formatDate value="${member.reg_date }"/></td>	<!-- fmt이용 날짜형식 지정 -->
-	<td><a href="member/command=updateForm&id=${member.id }">수정</a></td>
-	<td><a href="member/command=delete&id=${member.id }">삭제</a></td>
+	<td><fmt:formatDate value="${member.reg_date }"/></td>
+	<td><a href="member?command=updateForm&no=${member.no}">수정</a></td>
+	<td><a href="member?command=delete&no=${member.no}">삭제</a></td>
 </tr>
 </c:forEach>
 </table>
 </body>
 </html>
+
+
+
+
+
+
+
+

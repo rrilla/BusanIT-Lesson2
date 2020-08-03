@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% response.sendRedirect("member?command=list"); %>
+<% response.sendRedirect("list.do"); %>
 </body>
 </html>
