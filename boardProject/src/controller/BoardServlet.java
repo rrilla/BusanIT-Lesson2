@@ -30,7 +30,7 @@ public class BoardServlet extends HttpServlet {
     
     private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html;charset=utf-8");
+		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		
 		String requestURI=request.getRequestURI();
@@ -58,6 +58,15 @@ public class BoardServlet extends HttpServlet {
 			}
 			
 		}else if(action.equals("/read.do")) {
+			int bno = Integer.parseInt(request.getParameter("bno"));
+			boolean flag = BoardDao.getInstance().updateReadCount(bno);
+			Board board = BoardDao.getInstance().selectOne(bno);
+			if(board != null && flag == true) {
+				request.setAttribute("board", board);
+				request.getRequestDispatcher("board/read.jsp").forward(request, response);
+			}else {
+				out.print("<script>alert('조회 실패.');location.href='list.do';</script>");
+			}
 			
 		}else if(action.equals("/updateForm.do")) {
 			
@@ -115,6 +124,7 @@ public class BoardServlet extends HttpServlet {
     	DiskFileItemFactory factory = new DiskFileItemFactory();
     	factory.setRepository(currentDirPath);
     	factory.setSizeThreshold(5*1024*1024); 	//한번에 올릴 파일의 크기
+    	factory.setDefaultCharset(encoding);	//
     	ServletFileUpload upload = new ServletFileUpload(factory);
     	
     	try {

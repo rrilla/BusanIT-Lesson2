@@ -104,7 +104,7 @@ public class BoardDao {
 	
 	public boolean updateReadCount(int bno) {
 		boolean flag = false;
-		String sql = "update board set readcount = readcount+1 where bno=?";
+		String sql = "update m_board set readcount = readcount+1 where bno=?";
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
@@ -131,7 +131,7 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		String sql = "update board set title=?, content=?, image_name=? where num=?";
+		String sql = "update m_board set title=?, content=?, image_name=? where num=?";
 		try {
 			conn = DBConn.getConn();
 			ps = conn.prepareStatement(sql);

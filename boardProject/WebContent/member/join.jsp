@@ -70,7 +70,8 @@ $("#btnJoin").on('click', function () {
 	var id = $("#id").val();
 	if(id == ""){
 		alert("아이디 쓰셈");
-		id.focus();
+		/* id.focus(); */
+		$("#id").focus();
 		return false;
 	}
 	return true;
