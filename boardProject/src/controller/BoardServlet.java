@@ -69,12 +69,43 @@ public class BoardServlet extends HttpServlet {
 			}
 			
 		}else if(action.equals("/updateForm.do")) {
+			int bno = Integer.parseInt(request.getParameter("bno"));
+			Board board = BoardDao.getInstance().selectOne(bno);
+			if(board != null) {
+				request.setAttribute("board", board);
+				request.getRequestDispatcher("board/update.jsp").forward(request, response);
+			}else {
+				out.print("<script>alert('게시글 읽기 실패.');location.href='read.do?bno="+bno+"';</script>");
+			}
 			
 		}else if(action.equals("/update.do")) {
+			Map<String, String> boardMap = upload(request, response);
+			int bno = Integer.parseInt(boardMap.get("bno"));
+			String title = boardMap.get("title");
+			String content = boardMap.get("content");
+			String writer = boardMap.get("writer");
+			String image_name = boardMap.get("filename");
+			if(image_name == null) {
+				image_name = boardMap.get("ex_filename");
+			}
+			boolean flag = BoardDao.getInstance().insertBoard(new Board(bno, title,content,writer,image_name));
+			if(flag) {
+				out.print("<script>alert('글 수정성공.');location.href='list.do';</script>");
+			}else {
+				out.print("<script>alert('글 수정실패.');location.href='updateForm.do?bno="+bno+"';</script>");
+			}
 			
 		}else if(action.equals("/delete.do")) {
+			int bno = Integer.parseInt(request.getParameter("bno"));
+			boolean flag = BoardDao.getInstance().deleteBoard(bno);
+			if(flag) {
+				out.print("<script>alert('글 삭제성공.');location.href='list.do';</script>");
+			}else {
+				out.print("<script>alert('글 삭제실패.');location.href='read.do?bno="+bno+"';</script>");
+			}
 			
 		}else if(action.equals("/loginForm.do")) {
+			
 			
 		}else if(action.equals("/login.do")) {
 			String id=request.getParameter("id");
@@ -89,13 +120,16 @@ public class BoardServlet extends HttpServlet {
 			}else {
 				out.print("id error");
 			}
+			
 		}else if(action.equals("/logout.do")) {
 			HttpSession session = request.getSession();
 			session.removeAttribute("session_id");
 			//session.invalidate(); //페이지의 세션을 날림(무효화)
 			response.sendRedirect("list.do");
+			
 		}else if(action.equals("/joinForm.do")) {
 			request.getRequestDispatcher("member/join.jsp").forward(request, response);
+			
 		}else if(action.equals("/overappendId.do")) {
 			String id = request.getParameter("id");
 			boolean flag = MemberDao.getInstance().overappendId(id);
@@ -104,6 +138,7 @@ public class BoardServlet extends HttpServlet {
 			}else {
 				out.print("usable");
 			}
+			
 		}else if(action.equals("/join.do")) {
 			String id = request.getParameter("id");
 			String pw = request.getParameter("pw");
