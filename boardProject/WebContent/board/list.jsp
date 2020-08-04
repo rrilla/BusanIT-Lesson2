@@ -16,7 +16,7 @@
 				<h1>글목록</h1>
 				<hr>
 				<c:if test="${not empty session_id }">
-					<button type="button" class="btn btn-primary pull-right">글쓰기</button>
+					<button type="button" id="btnWriteForm" class="btn btn-primary pull-right">글쓰기</button>
 				</c:if>
 				<table class="table table-striped">
 					<thead>
@@ -55,6 +55,13 @@
 
 			</div>
 		</div>
+		
+<script type="text/javascript">
+	$("#btnWriteForm").on('click', function () {
+		location.href="writeForm.do";
+	});
+
+</script>
 
 
 <%@ include file="../include/footer.jsp" %>

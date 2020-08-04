@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
 <!DOCTYPE html>
 <html>
@@ -49,7 +50,7 @@ footer {
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="list.html">게시판</a></li>
+					<li class="active"><a href="list.do">게시판</a></li>
 					<c:choose>
 						<c:when test="${empty session_id }">
 							<li><a href="#" id="login_a">로그인</a></li>
@@ -135,10 +136,13 @@ $('#logout_a').on('click', function (event) {
 		dataType:"text",
 		success:function(data,textStatus){
 			if(data=="success"){
-				
-			}
-		}
-	}) */
+				alert("로그 아웃");
+				location.href="list.do";
+			} 
+		},error:function(data,textStatus){
+			alert("error")
+			},complete:function(data,textStatus){}
+	}); */
 });
 
 $("#btnLogin").on('click',function(){
@@ -149,11 +153,11 @@ $("#btnLogin").on('click',function(){
 		async:false,
 		data:query,
 		dataType:"text",
-		success:function(data,textStatus){
+		success:function(data,textStatus){	//데이터(url페이지에 출력된 내용), 상태정보
 			if(data=="success"){
 				alert("로그인 성공");
 				modal.modal("hide")
-				location.href="list.do";
+				location.href="list.do";	//로그인 페이지 불러오기 위하여 다시 페이지요청
 			}else if(data=="password error"){
 				alert("패스워드가 틀림")
 			}else{
@@ -163,6 +167,10 @@ $("#btnLogin").on('click',function(){
 			alert("error")
 		},complete:function(data,textStatus){}
 	});
+});
+
+$('#btnJoin').on('click', function () {
+	location.href = "joinForm.do";	//클릭했을때 갈 위치
 });
 </script>
 

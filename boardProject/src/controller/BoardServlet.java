@@ -14,23 +14,13 @@ import javax.servlet.http.HttpSession;
 import dao.BoardDao;
 import dao.MemberDao;
 import vo.Board;
+import vo.Member;
 
-/**
- * Servlet implementation class BoardSystemServlet
- */
 @WebServlet("*.do")
 public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    /**
-     * Default constructor. 
-     */
-    public BoardServlet() {
-        // TODO Auto-generated constructor stub
-    }
     
     private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out=response.getWriter();
@@ -62,7 +52,7 @@ public class BoardServlet extends HttpServlet {
 			String pw=request.getParameter("pw");
 			int n=MemberDao.getInstance().login(id,pw);
 			if(n==1) {
-				HttpSession session=request.getSession();
+				HttpSession session=request.getSession();	//세션을만듬
 				session.setAttribute("session_id", id);
 				out.print("success");
 			}else if(n==0) {
@@ -75,22 +65,34 @@ public class BoardServlet extends HttpServlet {
 			session.removeAttribute("session_id");
 			//session.invalidate(); //페이지의 세션을 날림(무효화)
 			response.sendRedirect("list.do");
-		}
+		}else if(action.equals("/joinForm.do")) {
+			request.getRequestDispatcher("member/join.jsp").forward(request, response);
+		}else if(action.equals("/overappendId.do")) {
+			String id = request.getParameter("id");
+			boolean flag = MemberDao.getInstance().overappendId(id);
+			if(flag) {
+				out.print("not usable");
+			}else {
+				out.print("usable");
+			}
+		}else if(action.equals("/join.do")) {
+			String id = request.getParameter("id");
+			String pw = request.getParameter("pw");
+			String name = request.getParameter("name");
+			boolean flag = MemberDao.getInstance().insert(new Member(id,pw,name));
+			if(flag){
+				out.print("<script>alert('회원가입 성공');location.href='list.do';</script>");
+			}else {
+				out.print("<script>alert('회원가입 실패');location.href='list.do';</script>");
+			}
+		}	
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doHandle(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doHandle(request, response);
 	}
 
