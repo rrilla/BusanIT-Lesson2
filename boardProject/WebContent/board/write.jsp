@@ -51,9 +51,9 @@
 
 			</div>
 			<div class="panel-footer">
-				<button type="submit" class="btn btn-warning">글등록</button>
+				<button type="submit" id="btnWrite" class="btn btn-warning">글등록</button>
 				<button type="reset" class="btn btn-danger">취소</button>
-				<button type="button" class="btn btn-info">목록보기</button>
+				<button type="button" id="btnList" class="btn btn-info">목록보기</button>
 			</div>
 			</form>
 		</div>
@@ -61,5 +61,23 @@
 
 	</div>
 </div>
+
+<script type="text/javascript">
+	$("#btnList").on('click', function () {	//목록보기 버튼 클릭시 나타날 페이지
+		location.href="list.do";
+	});
+	
+	$("#btnWrite").on('click', function () {
+		var title = $("#title").val();
+		if(title == ""){
+			alert("title을 입력하셈");
+			$("#title").focus();
+			return false;
+		}
+		return true;
+	});
+</script>
+
+
 
 <%@ include file="../include/footer.jsp"%>

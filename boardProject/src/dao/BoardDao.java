@@ -47,8 +47,7 @@ public class BoardDao {
 	
 	public boolean insertBoard(Board board) {
 		boolean flag = false;
-		String sql = "insert into board(bno, title, content, writer, image_name) "
-				+ "values(bno_seq.nextval, ?, ?, ?, ?";
+		String sql = "insert into m_board(bno, title, content, writer, image_name) values(bno_seq.nextval, ?, ?, ?, ?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {

@@ -23,6 +23,14 @@ public class Board {
 		this.image_name = image_name;
 	}
 	
+	public Board(String title, String content, String writer, String image_name) {
+		super();
+		this.title = title;
+		this.content = content;
+		this.writer = writer;
+		this.image_name = image_name;
+	}
+
 	public Board(int bno, String title, String content, String writer, String image_name,
 			int replycount) {
 		super();

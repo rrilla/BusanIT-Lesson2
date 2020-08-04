@@ -1,8 +1,11 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import dao.BoardDao;
 import dao.MemberDao;
@@ -19,6 +26,7 @@ import vo.Member;
 @WebServlet("*.do")
 public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String FILE_REPO="C:\\Users\\admin\\Desktop\\git\\Medol-Lesson2\\boardProject\\WebContent\\images\\temp";
     
     private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
@@ -34,8 +42,20 @@ public class BoardServlet extends HttpServlet {
 			request.getRequestDispatcher("board/list.jsp")
 			.forward(request, response);
 		}else if(action.equals("/writeForm.do")) {
+			request.getRequestDispatcher("board/write.jsp").forward(request, response);
 			
 		}else if(action.equals("/write.do")) {
+			Map<String, String> boardMap = upload(request, response);
+			String title = boardMap.get("title");
+			String content = boardMap.get("content");
+			String writer=boardMap.get("writer");
+			String image_name = boardMap.get("filename");
+			boolean flag = BoardDao.getInstance().insertBoard(new Board(title,content,writer,image_name));
+			if(flag) {
+				out.print("<script>alert('새글 추가성공.');location.href='list.do';</script>");
+			}else {
+				out.print("<script>alert('새글 추가실패.');location.href='writeForm.do';</script>");
+			}
 			
 		}else if(action.equals("/read.do")) {
 			
@@ -87,7 +107,48 @@ public class BoardServlet extends HttpServlet {
 			}
 		}	
 	}
-
+    
+    private Map<String, String> upload(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	Map<String, String> boardMap = new HashMap<String, String>();
+    	String encoding = "utf-8";
+    	File currentDirPath = new File(FILE_REPO);
+    	DiskFileItemFactory factory = new DiskFileItemFactory();
+    	factory.setRepository(currentDirPath);
+    	factory.setSizeThreshold(5*1024*1024); 	//한번에 올릴 파일의 크기
+    	ServletFileUpload upload = new ServletFileUpload(factory);
+    	
+    	try {
+    		List<FileItem> items = upload.parseRequest(request);
+    		for(int i=0; i<items.size(); i++) {
+    			FileItem item = (FileItem)items.get(i);
+    			if(item.isFormField()) {
+    				System.out.println(item.getFieldName() + ":" + item.getString());
+    				boardMap.put(item.getFieldName(), item.getString());
+    			}else {
+    				System.out.println("파라미터명 : " + item.getFieldName());
+    				System.out.println("파일명 : " + item.getName());
+    				System.out.println("파일크기 : " + item.getSize());
+    				
+    				if(item.getSize()>0) {
+    					int idx = item.getName().lastIndexOf("\\");
+    					if(idx == -1) {
+    						idx = item.getName().lastIndexOf("/");
+    					}
+    					String fileName = item.getName().substring(idx + 1);
+    					File uploFile = new File(currentDirPath+"\\"+fileName);
+    					boardMap.put(item.getFieldName(), fileName);
+    					item.write(uploFile);;
+    				}
+    			}
+    		}
+    	}catch(Exception ex) {
+    		ex.printStackTrace();
+    	}
+    	
+    	
+    	return boardMap;
+     	
+    }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doHandle(request, response);
 	}
