@@ -178,4 +178,41 @@ public class BoardDao {
 		return flag;
 	}
 	
+	public int getBoardCount() {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "select count(*) from m_board";
+		try {
+			conn = DBConn.getConn();
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			DBConn.close(conn, ps, rs);
+		}
+		return count;
+	}
+	
+	public void updateReplyCount(String bno, int n) {
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = "sql query";
+		try {
+			conn = DBConn.getConn();
+			ps = conn.prepareStatement(sql);
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			DBConn.close(conn, ps);
+		}
+	}
 }
