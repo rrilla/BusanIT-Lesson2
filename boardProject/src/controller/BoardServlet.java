@@ -22,6 +22,7 @@ import dao.BoardDao;
 import dao.MemberDao;
 import vo.Board;
 import vo.Member;
+import vo.PageMaker;
 
 @WebServlet("*.do")
 public class BoardServlet extends HttpServlet {
@@ -37,10 +38,19 @@ public class BoardServlet extends HttpServlet {
 		String contextPath=request.getContextPath();
 		String action=requestURI.substring(contextPath.length());
 		if(action.equals("/list.do")) {
-			List<Board> list=BoardDao.getInstance().selectAll();
+			String strPage = request.getParameter("pageNum");
+			int pageNum = 1;
+			if(strPage != null) {
+				pageNum = Integer.parseInt(strPage);
+			}
+			BoardDao boardDao = BoardDao.getInstance();
+			int totalCount = boardDao.getBoardCount();
+			PageMaker pageM = new PageMaker(pageNum, totalCount);
+			List<Board> list = boardDao.selectAll(pageM.getStart(), pageM.getEnd());
+			request.setAttribute("pageM", pageM);
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("board/list.jsp")
-			.forward(request, response);
+			request.getRequestDispatcher("board/list.jsp").forward(request, response);
+			
 		}else if(action.equals("/writeForm.do")) {
 			request.getRequestDispatcher("board/write.jsp").forward(request, response);
 			

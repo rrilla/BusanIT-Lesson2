@@ -215,4 +215,42 @@ public class BoardDao {
 			DBConn.close(conn, ps);
 		}
 	}
+	
+	public List<Board> selectAll(int start, int end){
+		String mysql = "select * from m_board order by bno desc limit";
+		
+		String sql = "select * from (select b1.*, rownum rn from "
+				+ "(select /*+ index_desc(m_board bno_idx) */ "
+				+ " bno, title, writer, readcount, writedate, replycount from m_board) b1 where rownum <= ?) "
+				+ "where rn > ?";
+		List<Board> list = new ArrayList<Board>();
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConn.getConn();
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, end);
+			ps.setInt(2, start);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Board board = new Board();
+				board.setBno(rs.getInt("bno"));
+				board.setTitle(rs.getString("title"));
+				//board.setContent(rs.getString("content"));
+				board.setWriter(rs.getString("writer"));
+				board.setReadcount(rs.getInt("readcount"));
+				board.setWritedate(rs.getTimestamp("writedate"));
+				//board.setImage_name(rs.getString("image_name"));
+				board.setReplycount(rs.getInt("replycount"));
+				list.add(board);
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			DBConn.close(conn, ps, rs);
+		}
+		return list;
+	}
 }
