@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insert title here</title>
+<link href="../css/bootstrap.css" rel="stylesheet">
+<link href="../css/bootstrap-theme.css" rel="stylesheet">
+<link href="../css/custom.css" rel="stylesheet">
+<style>
+header {
+	height: 100px;
+	background-color: rgba(125, 211, 242, 0.5);
+	border-radius: 15px;
+	padding: 10px;
+	margin: 10px 0;
+	font-family: 'Nanum Gothic', sans-serif;
+	text-align: center;
+}
+
+footer {
+	font-family: 'Nanum Gothic', sans-serif;
+	text-align: 	
+}
+
+.comment-heading, li.media {
+	cursor: pointer;
+}
+
+.comment-body, .comment-footer {
+	display: none;
+}
+
+li.media:hover {
+	background-color: skyblue;
+}
+</style>
+</head>
+<body>
+
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="../index.html"><img src="../images/logo.png" width="200" height="40"></a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="list.html">게시판</a></li>
+					<li><a href="#">메뉴2</a></li>
+					<li><a href="#">메뉴3</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">드롭다운 <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">서브메뉴 1</a></li>
+							<li><a href="#">서브메뉴 2</a></li>
+							<li><a href="#">서브메뉴 3</a></li>
+						</ul>
+					</li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="검색">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+			</div>
+			<!-- /.navbar-collapse -->
+		</nav>
+
+		<header>
+			<h2>그리드 시스템을 이용한 레이아웃</h2>
+		</header>
+
+		<div class="row">
+			<div class="col-md-2">
+				<ul class="nav nav-pills nav-stacked">
+					<li class="active"><a href="#">메뉴1</a></li>
+					<li><a href="#">메뉴2</a></li>
+					<li><a href="#">메뉴3</a></li>
+					<li><a href="#">메뉴4</a></li>
+				</ul>
+			</div>
+			<div class="col-md-10">
+				<h1>글 상세보기</h1>
+				<hr>
+
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3 class="panel-title">글 상세보기</h3>
+					</div>
+					<div class="panel-body">
+
+						<fieldset disabled>
+							<legend>기본정보 </legend>
+							<div class="form-group">
+								<label class="col-xs-2 col-lg-2 control-label">글번호</label>
+								<div class="col-xs-10 col-lg-10">
+									<input type="text" class="form-control" placeholder="글번호">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-2 col-lg-2 control-label">글제목</label>
+								<div class="col-xs-10 col-lg-10">
+									<input type="text" class="form-control" placeholder="글제목">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-2 col-lg-2 control-label">글내용</label>
+								<div class="col-xs-10 col-lg-10">
+									<textarea rows="5" class="form-control" placeholder="글내용"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-xs-2 col-lg-2 control-label">작성자</label>
+								<div class="col-xs-10 col-lg-10">
+									<input type="text" class="form-control" placeholder="작성자">
+								</div>
+							</div>
+						</fieldset>
+
+					</div>
+					<div class="panel-footer">
+						<button type="button" class="btn btn-warning">수정</button>
+						<button type="button" class="btn btn-danger">삭제</button>
+						<button type="button" class="btn btn-info">목록보기</button>
+					</div>
+				</div>
+				<!-- /글내용 panel -->
+
+				<div class="panel panel-default">
+					<div class="panel-heading comment-heading">
+						<span class="glyphicon glyphicon-comment"></span> 댓글 <span>4</span>
+						<button id="btnAddComment" type="button" class="btn btn-primary btn-xs pull-right">댓글쓰기</button>
+					</div>
+					<div class="panel-body comment-body">
+
+						<ul class="media-list">
+							<li class="media" data-rno="1">
+								<a class="pull-left" href="#"><img src="../images/pic.jpg"></a>
+								<div class="media-body">
+									<div>
+										<strong class="text-primary">user01</strong>
+										<small class="pull-right text-muted">2020-07-31</small>
+									</div>
+									<p>안녕하세요~~</p>
+								</div>
+							</li>
+							<li class="media" data-rno="2" style="margin-left: 70px;">
+								<a class="pull-left" href="#"><img src="../images/pic.jpg"></a>
+								<div class="media-body">
+									<div>
+										<strong class="text-primary">user02</strong>
+										<small class="pull-right text-muted">2020-08-01</small>
+									</div>
+									<p>반가워요~!</p>
+								</div>
+							</li>
+							<li class="media" data-rno="3" style="margin-left: 140px;">
+								<a class="pull-left" href="#"><img src="../images/pic.jpg"></a>
+								<div class="media-body">
+									<div>
+										<strong class="text-primary">user03</strong>
+										<small class="pull-right text-muted">2020-08-02</small>
+									</div>
+									<p>화면구현 재밌어요~~</p>
+								</div>
+							</li>
+							<li class="media" data-rno="4">
+								<a class="pull-left" href="#"><img src="../images/pic.jpg"></a>
+								<div class="media-body">
+									<div>
+										<strong class="text-primary">user04</strong>
+										<small class="pull-right text-muted">2020-08-03</small>
+									</div>
+									<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+								</div>
+							</li>
+						</ul>
+
+					</div><!-- /.panel-body -->
+					<div class="panel-footer comment-footer">
+						<div class="clearfix">
+							<ul class="pagination pull-right">
+								<li class="disabled"><a href="#">«</a></li>
+								<li class="active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">»</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /댓글 panel -->
+
+			</div>
+		</div>
+
+		<hr>
+		<footer> 여기는 푸터가 들어가는 곳입니다. </footer>
+
+	</div><!-- /div.container -->
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">모달 제목</h4>
+				</div>
+				<div class="modal-body">
+
+					<div class="form-group">
+						<label for="reply">댓글내용</label> 
+						<input type="text" class="form-control" placeholder="댓글내용" name="reply" id="reply">
+					</div>
+					<div class="form-group">
+						<label for="replyer">댓글작성자</label> 
+						<input type="text" class="form-control" placeholder="댓글작성자" name="replyer" id="replyer">
+					</div>
+					<div class="form-group">
+						<label for="regDate">작성일자</label> 
+						<input type="text" class="form-control" placeholder="댓글일자" name="regDate" id="regDate">
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" id="btnModalModify">수정</button>
+					<button type="button" class="btn btn-danger" id="btnModalRemove">삭제</button>
+					<button type="button" class="btn btn-primary" id="btnModalRegister">등록</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" id="btnModalClose">닫기</button>
+				</div>
+			</div>
+			<!-- 모달 콘텐츠 -->
+		</div>
+		<!-- 모달 다이얼로그 -->
+	</div>
+	<!-- 모달 전체 윈도우 -->
+
+
+	<script src="../js/jquery-3.5.1.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script>
+		// 댓글 바를 클릭했을때
+		$('.comment-heading').on('click', function() {
+			$(this).next().fadeToggle(); // div.comment-body
+			$(this).next().next().toggle(); // div.comment-footer
+		});
+		
+		// 모달창 화면요소를 미리 변수로 저장
+		var modal = $('.modal');
+		var modalTitle = $('#myModalLabel');
+		var modalInputReply = modal.find('input[name="reply"]');
+		var modalInputReplyer = modal.find('input[name="replyer"]');
+		var modalInputRegDate = modal.find('input[name="regDate"]');
+		
+		var btnModalRegister = $('#btnModalRegister');
+		var btnModalRemove = $('#btnModalRemove');
+		var btnModalModify = $('#btnModalModify');
+		
+		// 댓글등록 버튼 클릭했을때
+		$('#btnAddComment').on('click', function (event) {
+			event.stopPropagation(); // 이벤트 전파 막기 //retur false; 가능, 
+			
+			modalTitle.html('댓글 등록'); // 모달창 제목 설정
+			
+			modal.find('input').val('');
+			
+			modalInputRegDate.closest('div').hide(); // 댓글 작성일자 영역 숨기기
+			modal.find('button[id != "btnModalClose"]').hide(); // 닫기버튼을 제외한 모든버튼 숨기기
+			
+			btnModalRegister.show(); // 등록버튼 보이기
+			
+			$('#myModal').modal('show'); // 모달 대화상자 띄우기
+			
+			//return false;
+		});
+		
+		// 모달창의 댓글등록 버튼을 클릭했을때
+		btnModalRegister.on('click', function () {
+		
+			var reply = modalInputReply.val();      // 댓글 내용
+			var replyer = modalInputReplyer.val();  // 댓글 작성자
+			
+			var str = '';
+			str += '댓글내용: ' + reply;
+			str += '\n댓글작성자: ' + replyer;
+			str += '\n\n';
+			str += '댓글 등록 성공!';
+			
+			alert(str);
+			
+			modal.find('input').val('');
+			modal.modal('hide');	//모달창 
+		});
+		
+		// "동적" 이벤트 연결(이벤트연결 위임 방식 사용)
+		// 댓글 아이템을 클릭했을때
+		//$('ul.media-list ul').on('click', function () { //"정적" 이벤트 연결방식
+														//li태그 다지우고 데이터를 밀어넣기 방식으로 하기때매 li가 하나도없는상태라 선택불가
+		$('ul.media-list').on('click', 'li', function () { //ul아 li가 생성되면 이걸 진행해라
+			
+			modalTitle.html('댓글 수정/삭제'); // 모달창 제목 설정
+		
+			var reply = $(this).find('p').html();
+			var replyer = $(this).find('strong').html(); 	//자손,자식찾는 find
+			var regDate = $(this).find('small').html();
+			var rno = $(this).data('rno'); //data-'key'='value' 설정해놓은값 가져오기(중복설정가능)
+			
+			modalInputReply.val(reply);
+			modalInputReplyer.val(replyer);
+			modalInputRegDate.val(regDate).prop('readonly', true);
+			modal.data('rno', rno);
+			
+			modalInputRegDate.closest('div').show(); // 댓글 작성일자 영역 보이기
+			modal.find('button[id != "btnModalClose"]').hide();
+			btnModalRemove.show();
+			btnModalModify.show();
+			
+			modal.modal('show');
+		});
+		
+		// 모달창의 댓글수정 버튼 클릭했을때
+		btnModalModify.on('click', function () {
+		
+			var rno = modal.data('rno');
+			
+			alert(rno + '번 댓글 수정 성공!');
+			modal.modal('hide');
+		});
+		
+		// 모달창의 댓글삭제 버튼 클릭했을때
+		btnModalRemove.on('click', function () {
+		
+			var rno = modal.data('rno');
+		
+			var isRemove = confirm(rno + '번 댓글을 정말로 삭제하시겠습니까?');
+			if (!isRemove) {	//confirm - true or false return
+				return;
+			}
+			
+			alert(rno + '번 댓글 삭제 성공!');
+			modal.modal('hide');
+		});
+	</script>
+</body>
+</html>
+
+
+
+
+
