@@ -18,7 +18,7 @@ public class PageMaker {	//페이징을 위해 필요한 클래스
 		start=(currentPage-1)*pageSize;
 		end = start+(pageSize-1);	//-1지우면 
 		endPage = (int)(Math.ceil(currentPage/(double)pageSize))*pageSize;
-		startPage = endPage-pageSize + 1;
+		startPage = (endPage-pageSize) + 1;
 		int totalPage=(int)(Math.ceil(totalCount/(double)pageSize));
 		if(endPage > totalPage) endPage = totalPage;
 		

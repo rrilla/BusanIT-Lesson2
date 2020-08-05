@@ -33,7 +33,7 @@
 						<tr>
 							<td>${board.bno }</td>
 							<td>
-								<a href="read.do?bno=${board.bno}">${board.title }</a>
+								<a href="read.do?bno=${board.bno}&pageNum=${page<">${board.title }</a>
 							</td>
 							<td>${board.writer }</td>
 							<td>${board.readcount }</td>
@@ -44,13 +44,17 @@
 				</table>
 
 				<ul class="pagination">
-					<li class="disabled"><a href="#">« 이전</a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li><a href="#">다음 »</a></li>
+					<li class='<c:out value="${pageM.prev==true?'':'disabled'}"></c:out>'>
+						<a href="list.do?pageNum=${pageM.startPage-pageM.pageSize}">« 이전</a>
+					</li>
+					<c:forEach var="i" begin="${pageM.startPage}" end="${pageM.endPage}">
+						<li class='<c:out value="${pageM.currentPage==i?'active':''}"></c:out>'>
+							<a href="list.do?pageNum=${i}">${i}</a>
+						</li>
+					</c:forEach>
+					<li class='<c:out value="${pageM.next==true?'':'disabled'}"></c:out>'>
+						<a href="list.do?pageNum=${pageM.endPage+1}">다음 »</a>
+					</li>
 				</ul>
 
 			</div>

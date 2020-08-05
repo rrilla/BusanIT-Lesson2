@@ -95,23 +95,25 @@ public class BoardServlet extends HttpServlet {
 			String content = boardMap.get("content");
 			String writer = boardMap.get("writer");
 			String image_name = boardMap.get("filename");
+			String pageNum = boardMap.get("pageNum");
 			if(image_name == null) {
 				image_name = boardMap.get("ex_filename");
 			}
 			boolean flag = BoardDao.getInstance().insertBoard(new Board(bno, title,content,writer,image_name));
 			if(flag) {
-				out.print("<script>alert('글 수정성공.');location.href='list.do';</script>");
+				out.print("<script>alert('글 수정성공.');location.href='list.do?pageNum="+pageNum+"';</script>");
 			}else {
-				out.print("<script>alert('글 수정실패.');location.href='updateForm.do?bno="+bno+"';</script>");
+				out.print("<script>alert('글 수정실패.');location.href='updateForm.do?bno="+bno+"&pageNum="+pageNum+"';</script>");
 			}
 			
 		}else if(action.equals("/delete.do")) {
+			String pageNum = request.getParameter("pageNum");
 			int bno = Integer.parseInt(request.getParameter("bno"));
 			boolean flag = BoardDao.getInstance().deleteBoard(bno);
 			if(flag) {
-				out.print("<script>alert('글 삭제성공.');location.href='list.do';</script>");
+				out.print("<script>alert('글 삭제성공.');location.href='list.do?pageNum="+pageNum+"';</script>");
 			}else {
-				out.print("<script>alert('글 삭제실패.');location.href='read.do?bno="+bno+"';</script>");
+				out.print("<script>alert('글 삭제실패.');location.href='read.do?bno="+bno+"&pageNum="+pageNum+"';</script>");
 			}
 			
 		}else if(action.equals("/loginForm.do")) {

@@ -23,6 +23,7 @@
 					</div>
 					<form action="write.do" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="bno" value="${board.bno }" />
+					<input type="hidden" name="pageNum" value="${param.pageNum } "/>
 					<input type="hidden" name="ex_filename" value="${board.image_name }" />
 					<div class="panel-body">
 
