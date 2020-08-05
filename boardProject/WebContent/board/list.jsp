@@ -33,7 +33,7 @@
 						<tr>
 							<td>${board.bno }</td>
 							<td>
-								<a href="read.do?bno=${board.bno}&pageNum=${page<">${board.title }</a>
+								<a href="read.do?bno=${board.bno}&pageNum=${pageM.currentPage}">${board.title }</a>
 							</td>
 							<td>${board.writer }</td>
 							<td>${board.readcount }</td>
@@ -59,13 +59,19 @@
 
 			</div>
 		</div>
-		
 <script type="text/javascript">
-	$("#btnWriteForm").on('click', function () {
-		location.href="writeForm.do";
-	});
+$("#btnWriteForm").on('click',function(){
+	location.href="writeForm.do";
+});
 
 </script>
 
-
 <%@ include file="../include/footer.jsp" %>
+
+
+
+
+
+
+
+

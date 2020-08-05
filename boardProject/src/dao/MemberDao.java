@@ -8,39 +8,39 @@ import vo.Member;
 
 public class MemberDao {
 	private MemberDao() {}
-	private static MemberDao instance = new MemberDao();
+	private static MemberDao instance=new MemberDao();
 	
 	public static MemberDao getInstance() {
 		return instance;
 	}
 	
-	public boolean insert(Member member){
+	public boolean insert(Member member) {
 		boolean flag=false;
 		Connection conn=null;
 		PreparedStatement ps=null;
-		String sql="insert into b_member(id, pw, name) values(?, ?, ?)";
+		String sql="insert into b_member(id,pw,name) values(?,?,?)";
 		try {
 			conn=DBConn.getConn();
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, member.getId());
+			ps.setString(1,member.getId());
 			ps.setString(2, member.getPw());
-			ps.setString(3, member.getName());
+			ps.setString(3,member.getName());
 			int n=ps.executeUpdate();
 			if(n==1) {
 				flag=true;
 				System.out.println("회원 등록 성공");
 			}else {
-				System.out.println("회원 등록 실패");
+				System.out.println("회원등록 실패");
 			}
 		}catch(Exception ex) {
 			ex.printStackTrace();
-		}finally {
+		}finally{
 			DBConn.close(conn, ps);
 		}
 		return flag;
 	}
 	
-	public Member selectOne(int no){
+	public Member selectOne(String id) {
 		Member member=null;
 		Connection conn=null;
 		PreparedStatement ps=null;
@@ -49,13 +49,13 @@ public class MemberDao {
 		try {
 			conn=DBConn.getConn();
 			ps=conn.prepareStatement(sql);
-			ps.setInt(1, no);
+			ps.setString(1, id);
 			rs=ps.executeQuery();
 			if(rs.next()) {
 				member=new Member();
-				member.setId(rs.getNString("id"));
-				member.setPw(rs.getNString("pw"));
-				member.setName(rs.getNString("name"));
+				member.setId(rs.getString("id"));
+				member.setPw(rs.getString("pw"));
+				member.setName(rs.getString("name"));
 				member.setReg_date(rs.getDate("reg_date"));
 			}
 		}catch(Exception ex) {
@@ -66,56 +66,56 @@ public class MemberDao {
 		return member;
 	}
 	
-	public boolean overappendId(String id) {
-		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		String sql = "select * from b_member where id=?";
+	public boolean overappedId(String id) {
+		boolean flag=false;
+		Connection conn=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		String sql="select * from b_member where id=?";
 		try {
-			conn = DBConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, id);
-			rs = ps.executeQuery();
+			conn=DBConn.getConn();
+			ps=conn.prepareStatement(sql);
+			ps.setString(1,id);
+			rs=ps.executeQuery();
 			if(rs.next()) {
-				flag = true;
-				System.out.println("아이디 겹친다");
+				flag=true;
+				System.out.println("아이디 중복");
 			}else {
-				System.out.println("아이디 합격");
+				System.out.println("중복 아이디 없음");
 			}
-		} catch (Exception ex) {
+		}catch(Exception ex) {
 			ex.printStackTrace();
-		} finally {
-			DBConn.close(conn, ps);
+		}finally {
+			DBConn.close(conn, ps, rs);
 		}
 		return flag;
 	}
 	
 	public int login(String id, String pw) {
-		int n = -1;
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		String sql = "select pw from b_member where id=?";
+		int n=-1;
+		Connection conn=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		String sql="select pw from b_member where id=?";
 		try {
-			conn = DBConn.getConn();
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, id);
-			rs = ps.executeQuery();
+			conn=DBConn.getConn();
+			ps=conn.prepareStatement(sql);
+			ps.setString(1,id);
+			rs=ps.executeQuery();
 			if(rs.next()) {
-				if(pw.equals(rs.getString(1))) { //rs.getString(1) = select결과의 1번째 결과 칼럼
-					n = 1;
-					System.out.println("로그인 성공!!");
+				if(pw.equals(rs.getString(1))) {
+					n=1;
+					System.out.println("로그인 성공");
 				}else {
-					n = 0;
-					System.out.println("비번 다름");
+					n=0;
+					System.out.println("패스워드 다름");
 				}
 			}else {
 				System.out.println("아이디 없음");
 			}
-		} catch (Exception ex) {
+		}catch(Exception ex) {
 			ex.printStackTrace();
-		} finally {
+		}finally {
 			DBConn.close(conn, ps, rs);
 		}
 		return n;
@@ -125,19 +125,19 @@ public class MemberDao {
 		boolean flag=false;
 		Connection conn = null;
 		PreparedStatement ps = null;
-		String sql = "update b_member set pw=?, name=? where id=?";
+		String sql = "update b_member set pw=?,name=? where id=?";
 		try {
 			conn = DBConn.getConn();
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, member.getPw());
-			ps.setString(2, member.getName());
-			ps.setString(3, member.getId());
-			int n = ps.executeUpdate();
-			if(n == 1) {
-				flag = true;
-				System.out.println("update O");
+			ps.setNString(1, member.getPw());
+			ps.setNString(2, member.getName());
+			ps.setNString(3, member.getId());
+			int n=ps.executeUpdate();
+			if(n==1) {
+				flag=true;
+				System.out.println("update 성공");
 			}else {
-				System.out.println("update X");
+				System.out.println("update 실패");
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -148,20 +148,21 @@ public class MemberDao {
 	}
 	
 	public boolean delete(String id) {
-		boolean flag = false;
+		boolean flag=false;
 		Connection conn = null;
 		PreparedStatement ps = null;
+		//ResultSet rs = null;
 		String sql = "delete from b_member where id=?";
 		try {
 			conn = DBConn.getConn();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
-			int n = ps.executeUpdate();
-			if(n == 1) {
-				flag = true;
-				System.out.println("delete O");
+			int n=ps.executeUpdate();
+			if(n==1) {
+				flag=true;
+				System.out.println("삭제 성공");
 			}else {
-				System.out.println("delete X");
+				System.out.println("삭제 실패");
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -170,5 +171,7 @@ public class MemberDao {
 		}
 		return flag;
 	}
-	
 }
+
+
+

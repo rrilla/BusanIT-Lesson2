@@ -15,7 +15,7 @@ public class ReplyDao {
 		return instance;
 	}
 	
-	public List<Reply> selectReply(String bno){
+	public List<Reply> selectReply(int bno){
 		List<Reply> list = new ArrayList<Reply>();
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -24,7 +24,7 @@ public class ReplyDao {
 		try {
 			conn = DBConn.getConn();
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, Integer.parseInt(bno));
+			ps.setInt(1, bno);
 			rs = ps.executeQuery();
 			while(rs.next()){
 				Reply reply=new Reply();
@@ -70,7 +70,7 @@ public class ReplyDao {
 		return reply;
 	}
 	
-	public boolean replyDelete(String rno){
+	public boolean replyDelete(int rno){
 		boolean flag = false;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -78,7 +78,7 @@ public class ReplyDao {
 		try{
 			conn=DBConn.getConn();
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, Integer.parseInt(rno));
+			pstmt.setInt(1, rno);
 			pstmt.executeUpdate();
 			int n = pstmt.executeUpdate();
 			if(n==1) {
